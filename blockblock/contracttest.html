@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.34/dist/web3.min.js">
+</script>
+<script>
+        var web3 = new Web3('http://localhost:8545');
+        
+        const abi = [
+            {
+                "constant": false,
+                "inputs": [
+                    {
+                        "name": "_value",
+                        "type": "string"
+                    }
+                ],
+                "name": "setValue",
+                "outputs": [],
+                "payable": false,
+                "stateMutability": "nonpayable",
+                "type": "function"
+            },
+            {
+                "inputs": [
+                    {
+                        "name": "_value",
+                        "type": "string"
+                    }
+                ],
+                "payable": false,
+                "stateMutability": "nonpayable",
+                "type": "constructor"
+            },
+            {
+                "constant": true,
+                "inputs": [],
+                "name": "getValue",
+                "outputs": [
+                    {
+                        "name": "",
+                        "type": "string"
+                    }
+                ],
+                "payable": false,
+                "stateMutability": "view",
+                "type": "function"
+            }
+        ]
+        
+        const contractAddress = "0x8db336237c116fb0d990f92e6e0185160a30fbfe";
+        
+        var MyContract = new web3.eth.Contract(abi,contractAddress);
+        //console.log( MyContract.options.adress);
+        //console.log( MyContract.options.jsonInterface);
+        /* 
+        MyContract.methods.getValue().call()
+            .then(result => {
+                console.log(result);
+            }) */
+        
+        //voteContract.methods.getNumOfCandidate().call().then(console.log);
+        
+     
+        
+        async function hello (){
+            let result = await MyContract.methods.getValue().call();
+            console.log(result);
+        }
+        
+        hello();
+
+</script>
+
+<body>
+    
+</body>
+</html>
